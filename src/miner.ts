@@ -1,8 +1,12 @@
 import { Config } from "./config";
+import { HttpService } from "./http-service";
 
 export class Miner {
 
+    public HttpService: HttpService;
     constructor(args: any) {
+        console.log("New miner");
+        this.HttpService = new HttpService();
     }
 }
 
@@ -29,6 +33,22 @@ function getArgs() {
     return args;
 }
 const args = getArgs();
-console.log(args);
+//console.log(args);
 //--url=http://localhost:6001 for example
-let run = new Miner(args);
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+async function run() {
+    //console.log('Taking a break...');
+    //await sleep(2000);
+    let miner = new Miner(args);
+    console.log('Three second sleep, showing sleep in a loop...');
+
+    while(true) {
+        await sleep(5000);
+        console.log("Do prcessing here.")
+    }
+}
+
+run();
