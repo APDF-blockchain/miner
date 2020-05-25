@@ -23,7 +23,7 @@ export class HttpServer {
     /**
      * @description - the ID of the Node that contains the blockchain
      */
-    private nodeId: string;
+    private minerId: string;
     /**
      * @description - the configuration for this Node
      */
@@ -36,9 +36,8 @@ export class HttpServer {
     /**
      * @description - initializes this http server
      * @constructor
-     * @param {P2P} p2p - the peer-to-peer server associate with this http server 
      */
-    constructor(private p2p: P2P) {
+    constructor() {
         this.config = new Config();
     }
 
@@ -54,7 +53,7 @@ export class HttpServer {
      * @param {number} myHttpPort - port number for this listener
      */
     public initHttpServer(myHttpPort: number) {
-        this.nodeId = (myHttpPort + Math.random()).toString();
+        this.minerId = (myHttpPort + Math.random()).toString();
         const app: express.Application = express();
         app.use(bodyParser.json());
 
@@ -84,9 +83,8 @@ export class HttpServer {
 
             let rVal = {
                 'about': this.about,
-                'nodeId': this.nodeId,
-                'nodeUrl': this.getListenerUrl(),
-                'peers': this.p2p.getPeerCount()
+                'minerId': this.minerId,
+                'nodeUrl': this.getListenerUrl()
             };
             res.send(rVal);
         });
@@ -96,11 +94,11 @@ export class HttpServer {
             let hostUrl: string = req.get('host');
             let hostArray: string[] = hostUrl.split(':');
             let rVal = {
-                'nodeId': this.nodeId,
+                'minerId': this.minerId,
                 'host': hostArray[0],
                 'port': hostArray[1],
                 'selfUrl': hostUrl,
-                'peers': this.p2p.getPeers(),
+                // 'peers': this.p2p.getPeers(),
                 'config': this.config
             };
             res.send(rVal);
@@ -197,18 +195,18 @@ export class HttpServer {
             // }
         });
 
-        app.get('/peers', (req, res) => {
-            console.log(this.myHttpPort + ':GET /peers');
-            let rVal: string[] = this.p2p.getPeers();
-            if (rVal.length !== 0) {
-                for (let i = 0; i < rVal.length; i++) {
-                    console.log('peer' + i + ':' + rVal[i]);
-                }
-                res.send(rVal);
-            } else {
-                res.status(401).send("There currently no peers for this node.");
-            }
-        });
+        // app.get('/peers', (req, res) => {
+        //     console.log(this.myHttpPort + ':GET /peers');
+        //     let rVal: string[] = this.p2p.getPeers();
+        //     if (rVal.length !== 0) {
+        //         for (let i = 0; i < rVal.length; i++) {
+        //             console.log('peer' + i + ':' + rVal[i]);
+        //         }
+        //         res.send(rVal);
+        //     } else {
+        //         res.status(401).send("There currently no peers for this node.");
+        //     }
+        // });
 
         app.post('/peers/connect', (req, res) => {
             console.log(this.myHttpPort + ':POST /peers/connect');

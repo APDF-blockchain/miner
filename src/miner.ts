@@ -22,19 +22,20 @@ export class Miner {
     /**
      * @description - p2p port number for the p2p server
      */
-    public p2pPort: number = parseInt(process.env.P2P_PORT) || this.config.defaultP2pPort;
-    /**
-     * @description - comma separated list of peer urls.
-     */
-    public initialPeers: string[] = process.env.PEERS ? process.env.PEERS.split(',') : [];
+    // public p2pPort: number = parseInt(process.env.P2P_PORT) || this.config.defaultP2pPort;
+    // /**
+    //  * @description - comma separated list of peer urls.
+    //  */
+    // public initialPeers: string[] = process.env.PEERS ? process.env.PEERS.split(',') : [];
 
     constructor(args: any) {
-        console.log(this.initialPeers);
-        this.p2p = new P2P();
-        this.httpServer = new HttpServer(this.p2p);
+        // console.log(this.initialPeers);
+        //this.p2p = new P2P();
+        //this.httpServer = new HttpServer(this.p2p);
+        this.httpServer = new HttpServer();
         this.httpServer.initHttpServer(this.httpPort);
-        this.p2p.initP2PServer(this.p2pPort);
-        this.p2p.connectToPeers(this.initialPeers);
+        //this.p2p.initP2PServer(this.p2pPort);
+        //this.p2p.connectToPeers(this.initialPeers);
     }
 }
 
