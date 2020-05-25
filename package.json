@@ -1,0 +1,35 @@
+{
+  "name": "miner",
+  "version": "1.0.0",
+  "description": "Miner for the APDFblockchain/node",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "npm run build && node dist/miner.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/APDF-blockchain/miner.git"
+  },
+  "author": "Denis Putnam, Olivier Riccini, Bethany Osueke",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/APDF-blockchain/miner/issues"
+  },
+  "homepage": "https://github.com/APDF-blockchain/miner#readme",
+  "dependencies": {
+    "@types/express": "^4.17.6",
+    "@types/ws": "^7.2.4",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "crypto-js": "^4.0.0",
+    "elliptic": "^6.5.2",
+    "express": "^4.17.1",
+    "js-sha256": "^0.9.0",
+    "lodash": "^4.17.15",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.9.3",
+    "ws": "^7.3.0"
+  }
+}
