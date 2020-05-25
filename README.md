@@ -14,8 +14,3 @@ you run 'npm run-script build' command.
 5. run '../node_modules/.bin/typedoc --out ../docs --mode modules .'
 6. This will create .html files in the /docs directory.  You can open the index.html file to view 
     the documentation.
-
-# How to start things up
-1. To start the miner run 'HTTP_PORT=5001 P2P_PORT=7001 npm start' or 'npm start' which defaults 
-    to the 5001 and 7001 ports respectively.
-2. These instructions are subject to change as I learn more about how this miner is supposed to work.
