@@ -1,12 +1,22 @@
 import { Config } from "./config";
 import { HttpService } from "./http-service";
+import { MinerService } from "./miner-service";
 
 export class Miner {
 
     public HttpService: HttpService;
+    public MiningService: MinerService;
     constructor(args: any) {
         console.log("New miner");
         this.HttpService = new HttpService();
+        this.MiningService = new MinerService();
+
+    }
+
+    public processMiningJob(): void {
+        let res = this.HttpService.requestBlockFromNode();
+        console.log('Miner.processMiningJob(): res=',res);
+        this.MiningService.processMiningJob(res);
     }
 }
 
@@ -35,19 +45,26 @@ function getArgs() {
 const args = getArgs();
 //console.log(args);
 //--url=http://localhost:6001 for example
-function sleep(ms) {
+
+/**
+ * @description - sleep for given number of ms.
+ * @param {number} ms 
+ */
+function sleep(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
 
+/**
+ * @description - run the program forever and process a request every 5 seconds.
+ */
 async function run() {
-    //console.log('Taking a break...');
-    //await sleep(2000);
     let miner = new Miner(args);
     console.log('Three second sleep, showing sleep in a loop...');
-
-    while(true) {
-        await sleep(5000);
+    let count: number = 0;
+    while(count++ < 5) {
         console.log("Do prcessing here.")
+        miner.processMiningJob();
+        await sleep(5000);
     }
 }
 
