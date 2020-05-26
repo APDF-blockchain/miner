@@ -1,22 +1,39 @@
 import { Config } from "./config";
 import { HttpService } from "./http-service";
+import { Block } from "./block";
 import { MinerService } from "./miner-service";
 
 export class Miner {
 
-    public HttpService: HttpService;
-    public MiningService: MinerService;
-    constructor(args: any) {
-        console.log("New miner");
-        this.HttpService = new HttpService();
-        this.MiningService = new MinerService();
+    public httpService: HttpService;
+    public minerService: MinerService;
+    public config: Config;
 
+    constructor(args: any) {
+        this.config = new Config();
+        let url: string = args.url;
+        console.log('url=',url);
+        if( url != null && url !== undefined ) {
+            this.config.nodeUrl = url;
+        }
+
+        console.log("New miner");
+        this.minerService = new MinerService();
+        this.httpService = new HttpService(this.minerService,this.config);
     }
 
     public processMiningJob(): void {
-        let res = this.HttpService.requestBlockFromNode();
+        let res = this.httpService.requestBlockFromNode();
         console.log('Miner.processMiningJob(): res=',res);
-        this.MiningService.processMiningJob(res);
+    }
+
+    public processApreviousJob(): void {
+        let addresses: string[] = [];
+        for( let myAddress of this.minerService.getJobsMap().keys()) {
+            console.log('myAddress=',myAddress);
+            addresses.push(myAddress);
+        }
+        this.httpService.requestPreviousBlockFromNode(addresses[addresses.length - 1]);
     }
 }
 
@@ -61,9 +78,11 @@ async function run() {
     let miner = new Miner(args);
     console.log('Three second sleep, showing sleep in a loop...');
     let count: number = 0;
-    while(count++ < 5) {
+    while(count++ < 1) {
         console.log("Do prcessing here.")
         miner.processMiningJob();
+        await sleep(5000);
+        miner.processApreviousJob(); // for testing a previous job.
         await sleep(5000);
     }
 }
