@@ -6,6 +6,11 @@ This code can be found at https://github.com/APDF-blockchain/miner
 To run this application, run 'npm start' in the root of the project. Or run 'node dist/miner.js' after 
 you run 'npm run-script build' command.
 
+## Command line args
+After a build, one can supply command line args to start the application:
+1. --url=<url of the blockchain node>
+2. --address=<miner address that you wish to use instead of the default 28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B>
+
 # JSDoc
 1. run npm i typedoc
 2. The command in 1. is only required once.

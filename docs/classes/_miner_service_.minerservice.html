@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Miner | miner</title>
+	<title>MinerService | miner</title>
 	<meta name="description" content="Documentation for miner">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_miner_.html">&quot;miner&quot;</a>
+					<a href="../modules/_miner_service_.html">&quot;miner-service&quot;</a>
 				</li>
 				<li>
-					<a href="_miner_.miner.html">Miner</a>
+					<a href="_miner_service_.minerservice.html">MinerService</a>
 				</li>
 			</ul>
-			<h1>Class Miner</h1>
+			<h1>Class MinerService</h1>
 		</div>
 	</div>
 </header>
@@ -74,7 +74,7 @@
 					<dl class="tsd-comment-tags">
 						<dt>classdesc</dt>
 						<dd><ul>
-								<li>the main class for this application</li>
+								<li>contains the attributes and methods for the miner service</li>
 							</ul>
 						</dd>
 					</dl>
@@ -84,7 +84,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Miner</span>
+						<span class="target">MinerService</span>
 					</li>
 				</ul>
 			</section>
@@ -95,22 +95,20 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_miner_.miner.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_miner_service_.minerservice.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_miner_.miner.html#config" class="tsd-kind-icon">config</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_miner_.miner.html#httpservice" class="tsd-kind-icon">http<wbr>Service</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_miner_.miner.html#minerservice" class="tsd-kind-icon">miner<wbr>Service</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="_miner_service_.minerservice.html#jobs" class="tsd-kind-icon">jobs</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Methods</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_miner_.miner.html#processapreviousjob" class="tsd-kind-icon">process<wbr>Aprevious<wbr>Job</a></li>
-								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_miner_.miner.html#processminingjob" class="tsd-kind-icon">process<wbr>Mining<wbr>Job</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_miner_service_.minerservice.html#getjobsmap" class="tsd-kind-icon">get<wbr>Jobs<wbr>Map</a></li>
+								<li class="tsd-kind-method tsd-parent-kind-class"><a href="_miner_service_.minerservice.html#processminingjob" class="tsd-kind-icon">process<wbr>Mining<wbr>Job</a></li>
 							</ul>
 						</section>
 					</div>
@@ -122,29 +120,18 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Miner<span class="tsd-signature-symbol">(</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_miner_.miner.html" class="tsd-signature-type">Miner</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Miner<wbr>Service<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_miner_service_.minerservice.html" class="tsd-signature-type">MinerService</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner.ts#L23">miner.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner-service.ts#L12">miner-service.ts:12</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 							</div>
-							<h4 class="tsd-parameters-title">Parameters</h4>
-							<ul class="tsd-parameters">
-								<li>
-									<h5>args: <span class="tsd-signature-type">any</span></h5>
-									<div class="tsd-comment tsd-typography">
-										<div class="lead">
-											<p>arguments from the command line</p>
-										</div>
-									</div>
-								</li>
-							</ul>
-							<h4 class="tsd-returns-title">Returns <a href="_miner_.miner.html" class="tsd-signature-type">Miner</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_miner_service_.minerservice.html" class="tsd-signature-type">MinerService</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -152,57 +139,19 @@
 			<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="config" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> config</h3>
-					<div class="tsd-signature tsd-kind-icon">config<span class="tsd-signature-symbol">:</span> <a href="_config_.config.html" class="tsd-signature-type">Config</a></div>
+					<a name="jobs" class="tsd-anchor"></a>
+					<h3><span class="tsd-flag ts-flagPrivate">Private</span> jobs</h3>
+					<div class="tsd-signature tsd-kind-icon">jobs<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="_block_.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> = new Map&lt;string, Block&gt;()</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner.ts#L23">miner.ts:23</a></li>
+							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner-service.ts#L12">miner-service.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
 							<dd><ul>
-									<li>the configuration object</li>
-								</ul>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="httpservice" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> http<wbr>Service</h3>
-					<div class="tsd-signature tsd-kind-icon">http<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_http_service_.httpservice.html" class="tsd-signature-type">HttpService</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner.ts#L15">miner.ts:15</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>description</dt>
-							<dd><ul>
-									<li>the http service object</li>
-								</ul>
-							</dd>
-						</dl>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a name="minerservice" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagPrivate">Private</span> miner<wbr>Service</h3>
-					<div class="tsd-signature tsd-kind-icon">miner<wbr>Service<span class="tsd-signature-symbol">:</span> <a href="_miner_service_.minerservice.html" class="tsd-signature-type">MinerService</a></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner.ts#L19">miner.ts:19</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<dl class="tsd-comment-tags">
-							<dt>description</dt>
-							<dd><ul>
-									<li>the miner service object</li>
+									<li>map of the mining jobs</li>
 								</ul>
 							</dd>
 						</dl>
@@ -212,28 +161,31 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Methods</h2>
 				<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-					<a name="processapreviousjob" class="tsd-anchor"></a>
-					<h3>process<wbr>Aprevious<wbr>Job</h3>
+					<a name="getjobsmap" class="tsd-anchor"></a>
+					<h3>get<wbr>Jobs<wbr>Map</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">process<wbr>Aprevious<wbr>Job<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">get<wbr>Jobs<wbr>Map<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="_block_.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner.ts#L57">miner.ts:57</a></li>
+									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner-service.ts#L49">miner-service.ts:49</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
 									<dd><ul>
-											<li>for testing purposed only.  may be removed later.</li>
+											<li>get the jobs map</li>
 										</ul>
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Map</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><a href="_block_.block.html" class="tsd-signature-type">Block</a><span class="tsd-signature-symbol">&gt;</span></h4>
+							<ul>
+								<li>map of the jobs</li>
+							</ul>
 						</li>
 					</ul>
 				</section>
@@ -241,25 +193,34 @@
 					<a name="processminingjob" class="tsd-anchor"></a>
 					<h3>process<wbr>Mining<wbr>Job</h3>
 					<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">process<wbr>Mining<wbr>Job<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+						<li class="tsd-signature tsd-kind-icon">process<wbr>Mining<wbr>Job<span class="tsd-signature-symbol">(</span>job<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner.ts#L49">miner.ts:49</a></li>
+									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/e3baed4/src/miner-service.ts#L25">miner-service.ts:25</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
 								<dl class="tsd-comment-tags">
 									<dt>description</dt>
 									<dd><ul>
-											<li>process a mining job that is requested from the blockchain node.</li>
+											<li>processes a mining job that was requested from the blockchain node.</li>
 										</ul>
 									</dd>
 								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>job: <span class="tsd-signature-type">any</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>job that was returned from the request to the blockchain node.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -283,10 +244,10 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_http_service_.html">&quot;http-<wbr>service&quot;</a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_miner_.html">&quot;miner&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_miner_service_.html">&quot;miner-<wbr>service&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -299,42 +260,24 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_miner_.miner.html" class="tsd-kind-icon">Miner</a>
+						<a href="_miner_service_.minerservice.html" class="tsd-kind-icon">Miner<wbr>Service</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_miner_.miner.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_miner_service_.minerservice.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_miner_.miner.html#config" class="tsd-kind-icon">config</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_miner_.miner.html#httpservice" class="tsd-kind-icon">http<wbr>Service</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-								<a href="_miner_.miner.html#minerservice" class="tsd-kind-icon">miner<wbr>Service</a>
+								<a href="_miner_service_.minerservice.html#jobs" class="tsd-kind-icon">jobs</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_miner_.miner.html#processapreviousjob" class="tsd-kind-icon">process<wbr>Aprevious<wbr>Job</a>
+								<a href="_miner_service_.minerservice.html#getjobsmap" class="tsd-kind-icon">get<wbr>Jobs<wbr>Map</a>
 							</li>
 							<li class=" tsd-kind-method tsd-parent-kind-class">
-								<a href="_miner_.miner.html#processminingjob" class="tsd-kind-icon">process<wbr>Mining<wbr>Job</a>
+								<a href="_miner_service_.minerservice.html#processminingjob" class="tsd-kind-icon">process<wbr>Mining<wbr>Job</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
-					<li class=" tsd-kind-variable tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/_miner_.html#args" class="tsd-kind-icon">args</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/_miner_.html#getargs" class="tsd-kind-icon">get<wbr>Args</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/_miner_.html#run" class="tsd-kind-icon">run</a>
-					</li>
-					<li class=" tsd-kind-function tsd-parent-kind-module tsd-is-not-exported">
-						<a href="../modules/_miner_.html#sleep" class="tsd-kind-icon">sleep</a>
-					</li>
 				</ul>
 			</nav>
 		</div>

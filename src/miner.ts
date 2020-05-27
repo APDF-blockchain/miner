@@ -3,18 +3,39 @@ import { HttpService } from "./http-service";
 import { Block } from "./block";
 import { MinerService } from "./miner-service";
 
+/**
+ * @classdesc - the main class for this application
+ * @class Miner
+ */
 export class Miner {
 
-    public httpService: HttpService;
-    public minerService: MinerService;
-    public config: Config;
+    /**
+     * @description - the http service object
+     */
+    private httpService: HttpService;
+    /**
+     * @description - the miner service object
+     */
+    private minerService: MinerService;
+    /**
+     * @description - the configuration object
+     */
+    private config: Config;
 
+    /**
+     * @constructor - initialized this class object
+     * @param args - arguments from the command line
+     */
     constructor(args: any) {
         this.config = new Config();
         let url: string = args.url;
+        let address: string = args.address;
         console.log('url=',url);
         if( url != null && url !== undefined ) {
             this.config.nodeUrl = url;
+        }
+        if( address != null && address !== undefined) {
+            this.config.minerAddress = address;
         }
 
         console.log("New miner");
@@ -22,11 +43,17 @@ export class Miner {
         this.httpService = new HttpService(this.minerService,this.config);
     }
 
+    /**
+     * @description - process a mining job that is requested from the blockchain node.
+     */
     public processMiningJob(): void {
         let res = this.httpService.requestBlockFromNode();
         console.log('Miner.processMiningJob(): res=',res);
     }
 
+    /**
+     * @description - for testing purposed only.  may be removed later.
+     */
     public processApreviousJob(): void {
         let addresses: string[] = [];
         for( let myAddress of this.minerService.getJobsMap().keys()) {
@@ -37,6 +64,9 @@ export class Miner {
     }
 }
 
+/**
+ * @description - get command line args. --url=<url of node> --address=<address of the miner>
+ */
 function getArgs() {
     const args = {};
     process.argv
@@ -59,9 +89,14 @@ function getArgs() {
         });
     return args;
 }
+
+/**
+ * @description - call the getArgs() function to process the command line args.
+ */
 const args = getArgs();
 //console.log(args);
 //--url=http://localhost:6001 for example
+//--address="28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B"
 
 /**
  * @description - sleep for given number of ms.
@@ -78,7 +113,7 @@ async function run() {
     let miner = new Miner(args);
     console.log('Three second sleep, showing sleep in a loop...');
     let count: number = 0;
-    while(count++ < 1) {
+    while(count++ < 1) { // Eventually this will be a forever while loop.
         console.log("Do prcessing here.")
         miner.processMiningJob();
         await sleep(5000);
@@ -87,4 +122,7 @@ async function run() {
     }
 }
 
+/**
+ * @description - run the application forever.
+ */
 run();
