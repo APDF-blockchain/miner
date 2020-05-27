@@ -21,7 +21,7 @@ export class Block {
     /**
      * @description - array of transactions associated with the block
      */
-    public transactions: Transaction[];
+    public transactions: Transaction[] = [];
     /**
      * @description - mining difficulty of the block
      */

@@ -117,8 +117,8 @@ async function run() {
         console.log("Do prcessing here.")
         miner.processMiningJob();
         await sleep(5000);
-        miner.processApreviousJob(); // for testing a previous job.
-        await sleep(5000);
+        //miner.processApreviousJob(); // for testing a previous job.
+        //await sleep(5000);
     }
 }
 
