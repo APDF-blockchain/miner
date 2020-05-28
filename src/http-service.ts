@@ -38,18 +38,14 @@ export class HttpService {
      */
     public async requestBlockFromNode(): Promise<any> {
         try {
-            //let queryParameter = 'http:%2f%2flocalhost:5001';
-            // Can we use a metamask account?
             let queryParameter = this.config.minerAddress;  // This is the address of miner.  The individual who has a mining rig.  How is it calculated?
             console.log('GET ' + this.nodeUrl + '/mining/get-mining-job/{' + queryParameter + '}');
 
             let rVal: HttpBinData;
-            //let rest: rm.RestClient = new rm.RestClient('miner-http-service');
             let res: rm.IRestResponse<HttpBinData> = await this.rest.get<HttpBinData>(this.nodeUrl + '/mining/get-mining-job/' + queryParameter);
             console.log('status code=', res.statusCode);
             console.log('result=', res.result);
             let minedBlock: Block = this.minerService.processMiningJob(res.result);
-            // TODO: now we need to figure out what to do with the mined block and what to do with jobs map after it is complete
             this.submitMinedBlockToBlockChainNode(minedBlock);
             rVal = res.result;
         } catch (err) {
@@ -60,7 +56,6 @@ export class HttpService {
     public async submitMinedBlockToBlockChainNode(_minedBlock: Block): Promise<any> {
         try {
             console.log('GET ' + this.nodeUrl + '/mining/submit-mined-block');
-            let rVal: HttpBinData;
             let submitBlock: SubmitBlock = new SubmitBlock();
             submitBlock.blockDataHash = _minedBlock.blockDataHash;
             submitBlock.dateCreated = _minedBlock.dateCreated;
