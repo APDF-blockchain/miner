@@ -70,35 +70,65 @@ export class MinerService {
 
     private mineTheBlock(_block: Block): Block {
         let minedBlock: Block;
+        // Deal with the transactions. Such as set the block index and the trans success = true.
+        for (let i = 0; i < _block.transactions.length; i++) {
+            _block.transactions[i].tranferSuccessful = true;
+            _block.transactions[i].minedInBlockIndex = _block.index;
+        }
         let done: boolean = false;
+        let maxZeroString: string = '00000000000000000000000000000000000000000000000000'; // 50 zeros
         let minedBlockHash: string = '';
-        let _partialString: string = _block.blockDataHash + _block.dateCreated;
         let nonce: number = _block.nonce;
+        //_block.difficulty = 1; // FOR TESTING ONLY.  Delete this line.
         while (done === false) {
             console.log('nonce=', nonce);
-            let _wString = _partialString + nonce;
-            minedBlockHash = sha256(_wString);
-            console.log('minedBlockHash=',minedBlockHash);
-            //let _strStart: string = minedBlockHash.substr(0,_block.difficulty + 1);
-            let _strStart: string = minedBlockHash.substr(0,_block.difficulty - 3);
-            //if(_strStart.length >= _block.difficulty) {
+            _block.nonce = nonce;
+            minedBlockHash = sha256(JSON.stringify(_block));
+            console.log('minedBlockHash=', minedBlockHash);
+            let _strStart: string = minedBlockHash.substr(0, _block.difficulty);
             console.log('_strStart=', _strStart);
-            if(_strStart === "0") {
+            if (_strStart === maxZeroString.substr(0, _block.difficulty)) {
                 done = true;
             } else {
                 nonce++;
             }
-        }
-        // TODO: deal with the transactions. Such as set the block index and the trans success = true.
-        for( let i=0; i < _block.transactions.length; i++) {
-            _block.transactions[i].tranferSuccessful = true;
-            _block.transactions[i].minedInBlockIndex = 0; // TODO: how to determine this?
         }
         _block.nonce = nonce;
         _block.blockHash = minedBlockHash;
         minedBlock = _block;
         return minedBlock;
     }
+    // private mineTheBlock(_block: Block): Block {
+    //     let minedBlock: Block;
+    //     let done: boolean = false;
+    //     let minedBlockHash: string = '';
+    //     let _partialString: string = _block.blockDataHash + _block.dateCreated;
+    //     let nonce: number = _block.nonce;
+    //     while (done === false) {
+    //         console.log('nonce=', nonce);
+    //         let _wString = _partialString + nonce;
+    //         minedBlockHash = sha256(_wString);
+    //         console.log('minedBlockHash=',minedBlockHash);
+    //         //let _strStart: string = minedBlockHash.substr(0,_block.difficulty + 1);
+    //         let _strStart: string = minedBlockHash.substr(0,_block.difficulty - 3);
+    //         //if(_strStart.length >= _block.difficulty) {
+    //         console.log('_strStart=', _strStart);
+    //         if(_strStart === "0") {
+    //             done = true;
+    //         } else {
+    //             nonce++;
+    //         }
+    //     }
+    //     // TODO: deal with the transactions. Such as set the block index and the trans success = true.
+    //     for( let i=0; i < _block.transactions.length; i++) {
+    //         _block.transactions[i].tranferSuccessful = true;
+    //         _block.transactions[i].minedInBlockIndex = _block.index; 
+    //     }
+    //     _block.nonce = nonce;
+    //     _block.blockHash = minedBlockHash;
+    //     minedBlock = _block;
+    //     return minedBlock;
+    // }
 
     /**
      * @description - get the jobs map
