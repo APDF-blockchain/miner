@@ -39,32 +39,34 @@ export class HttpService {
     public async requestBlockFromNode(): Promise<any> {
         try {
             let queryParameter = this.config.minerAddress;  // This is the address of miner.  The individual who has a mining rig.  How is it calculated?
-            console.log('GET ' + this.nodeUrl + '/mining/get-mining-job/{' + queryParameter + '}');
+            console.log('HttpService.requestBlockFromNode(): GET ' + this.nodeUrl + '/mining/get-mining-job/{' + queryParameter + '}');
 
             let res: rm.IRestResponse<HttpBinData> = await this.rest.get<HttpBinData>(this.nodeUrl + '/mining/get-mining-job/' + queryParameter);
-            console.log('status code=', res.statusCode);
-            console.log('result=', res.result);
-            let minedBlock: Block = this.minerService.processMiningJob(res.result);
+            console.log('HttpService.requestBlockFromNode(): status code=', res.statusCode);
+            console.log('HttpService.requestBlockFromNode(): result=', res.result);
+            let minedBlock: SubmitBlock = this.minerService.processMiningJob(res.result);
             this.submitMinedBlockToBlockChainNode(minedBlock);
         } catch (err) {
             console.log(err.message);
+            console.log(err.result);
         }
     }
 
-    public async submitMinedBlockToBlockChainNode(_minedBlock: Block): Promise<any> {
+    public async submitMinedBlockToBlockChainNode(_minedBlock: SubmitBlock): Promise<any> {
         try {
-            console.log('GET ' + this.nodeUrl + '/mining/submit-mined-block');
+            console.log('HttpService.submitMinedBlockToBlockChainNode(): GET ' + this.nodeUrl + '/mining/submit-mined-block');
             let submitBlock: SubmitBlock = new SubmitBlock();
             submitBlock.blockDataHash = _minedBlock.blockDataHash;
             submitBlock.dateCreated = _minedBlock.dateCreated;
             submitBlock.nonce = _minedBlock.nonce;
             submitBlock.blockHash = _minedBlock.blockHash;
             let res: rm.IRestResponse<HttpBinData> = await this.rest.create<HttpBinData>(this.nodeUrl + '/mining/submit-mined-block', submitBlock);
-            console.log('status code=', res.statusCode);
-            console.log('result=', res.result);
+            console.log('HttpService.submitMinedBlockToBlockChainNode(): status code=', res.statusCode);
+            console.log('HttpService.submitMinedBlockToBlockChainNode(): result=', res.result);
             this.minerService.getJobsMap().delete(submitBlock.blockDataHash);
         } catch (err) {
             console.log(err.message);
+            console.log(err.result);
         }
     }
 
