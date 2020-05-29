@@ -113,8 +113,8 @@ async function run() {
     let miner = new Miner(args);
     console.log('Three second sleep, showing sleep in a loop...');
     let count: number = 0;
-    //while(count++ < 1) { // Eventually this will be a forever while loop.
-    while(true) {
+    while(count++ < 1) { // Eventually this will be a forever while loop.
+    //while(true) {
         console.log("Do prcessing here.")
         miner.processMiningJob();
         await sleep(5000);

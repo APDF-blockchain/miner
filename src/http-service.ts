@@ -54,7 +54,7 @@ export class HttpService {
 
     public async submitMinedBlockToBlockChainNode(_minedBlock: SubmitBlock): Promise<any> {
         try {
-            console.log('HttpService.submitMinedBlockToBlockChainNode(): GET ' + this.nodeUrl + '/mining/submit-mined-block');
+            console.log('HttpService.submitMinedBlockToBlockChainNode(): POST ' + this.nodeUrl + '/mining/submit-mined-block');
             let submitBlock: SubmitBlock = new SubmitBlock();
             submitBlock.blockDataHash = _minedBlock.blockDataHash;
             submitBlock.dateCreated = _minedBlock.dateCreated;
