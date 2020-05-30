@@ -1,7 +1,8 @@
-import { sha256, sha224 } from 'js-sha256';
+// import { sha256, sha224 } from 'js-sha256';
+//import sha256 from 'crypto-js/sha256';
+import * as CryptoJS from 'crypto-js';
 import { Block } from "./block";
-import { BlockCandidate } from './model/block-candidate';
-import { GetMiningJobRequest } from './model/get-mining-job-request';
+import { BlockCandidate } from './model/candidate-block';
 import { SubmitBlock } from './model/submit-block';
 
 /**
@@ -36,7 +37,7 @@ export class MinerService {
     /**
      * @description - map of the mining jobs
      */
-    private jobs: Map<string, GetMiningJobRequest> = new Map<string, GetMiningJobRequest>();
+    private jobs: Map<string, BlockCandidate> = new Map<string, BlockCandidate>();
 
     /**
      * @constructor - initializes an object of this class
@@ -48,48 +49,47 @@ export class MinerService {
     /**
      * @description - processes a mining job that was requested from the blockchain node.
      * @param {any} job - job that was returned from the request to the blockchain node.
-     * @returns {GetMiningJobRequest} minedBlock
+     * @returns {BlockCandidate} minedBlock
      */
     public processMiningJob(job: any): SubmitBlock {
         //console.log('MinerService.processMiningJob(' + JSON.stringify(job) + '): called...');
         console.log('MinerService.processMiningJob(' + job + '): called...');
-        let myBlock: GetMiningJobRequest = new GetMiningJobRequest();
+        let myBlock: BlockCandidate = new BlockCandidate();
         myBlock.blockDataHash = job.blockDataHash;
         myBlock.difficulty = job.difficulty;
         myBlock.index = job.index;
         myBlock.expectedReward = job.expectedReward;
         myBlock.rewardAddress = job.rewardAddress;
+        myBlock.transactions = job.transactions;
+        myBlock.timestamp = job.timestamp;
+        myBlock.transactionsIncluded = job.transactionsIncluded;
         this.jobs.set(myBlock.blockDataHash, myBlock);
         let minedBlock = this.mineTheBlock(myBlock);
         return minedBlock;
     }
 
-    private mineTheBlock(_block: GetMiningJobRequest): SubmitBlock {
+    private mineTheBlock(_candidateBlock: BlockCandidate): SubmitBlock {
         let minedBlock: SubmitBlock = new SubmitBlock();
-        let blockCandidate: BlockCandidate = new BlockCandidate();
         let done: boolean = false;
         // This allows for changes in difficulty and the number of zero to compare at the beginning of the calculated hash.
-        let maxZeroString: string = "0".repeat(_block.difficulty + 1); 
+        let maxZeroString: string = "0".repeat(_candidateBlock.difficulty + 1);
         let minedBlockHash: string = '';
         let nonce: number = 0
-        blockCandidate.blockDataHash = _block.blockDataHash;
-        blockCandidate.dateCreated = new Date();
-        blockCandidate.nonce = nonce;
         while (done === false) {
             console.log('MinerService.mineTheBloc(): nonce=', nonce);
-            blockCandidate.nonce = nonce;
-            //minedBlockHash = sha256(JSON.stringify(blockCandidate));
-            minedBlockHash = sha256(
-                _block.index + 
-                _block.previousBlockHash + 
-                _block.timestamp + 
-                _block.transactions +
-                _block.difficulty + 
-                nonce.toString());
+            //CryptoJS.SHA256(index + previousHash + timestamp + data + difficulty + nonce).toString();
+            //minedBlockHash = sha256(
+            minedBlockHash = CryptoJS.SHA256(
+                _candidateBlock.index +
+                _candidateBlock.previousBlockHash +
+                _candidateBlock.timestamp +
+                _candidateBlock.transactions +
+                _candidateBlock.difficulty +
+                nonce).toString();
             console.log('MinerService.mineTheBloc(): minedBlockHash=', minedBlockHash);
-            let _strStart: string = minedBlockHash.substr(0, _block.difficulty);
+            let _strStart: string = minedBlockHash.substr(0, _candidateBlock.difficulty);
             console.log('MinerService.mineTheBloc(): _strStart=', _strStart);
-            if (_strStart === maxZeroString.substr(0, _block.difficulty)) {
+            if (_strStart === maxZeroString.substr(0, _candidateBlock.difficulty)) {
                 done = true;
             } else {
                 nonce++;
@@ -98,9 +98,15 @@ export class MinerService {
         minedBlock.nonce = nonce;
         minedBlock.blockHash = minedBlockHash;
         minedBlock.dateCreated = new Date();
-        minedBlock.blockDataHash = blockCandidate.blockDataHash;
-        minedBlock.timestamp = _block.timestamp;
-        minedBlock.transactions = _block.transactions;
+        minedBlock.blockDataHash = _candidateBlock.blockDataHash;
+        minedBlock.timestamp = _candidateBlock.timestamp;
+        // Go through the transactions and set the minedBlockIndex and the tranferSuccessful
+        for (let i = 0; i < _candidateBlock.transactions.length; i++) {
+            _candidateBlock.transactions[i].minedInBlockIndex = _candidateBlock.index;
+            _candidateBlock.transactions[i].tranferSuccessful = true;
+        }
+        minedBlock.transactions = _candidateBlock.transactions;
+        console.log('MinerService.mineTheBlock(): minedBlock='+JSON.stringify(minedBlock));
         return minedBlock;
     }
 
@@ -141,7 +147,7 @@ export class MinerService {
      * @description - get the jobs map
      * @returns - map of the jobs
      */
-    public getJobsMap(): Map<string, GetMiningJobRequest> {
+    public getJobsMap(): Map<string, BlockCandidate> {
         return this.jobs;
     }
 }

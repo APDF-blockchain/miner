@@ -38,13 +38,13 @@ export class Transaction {
     /**
      * @description - hex number[2][64]
      */
-    public senderSignature: string[];
+    public senderSignature: string[] = [];
     /**
-     * @description - integer/null set by the miner
+     * @description - integer/null.  Set by the miner.
      */
-    public minedInBlockIndex: number;
+    public minedInBlockIndex: number; 
     /**
-     * @description - boolean set by the minder
+     * @description - boolean. Set by the miner.
      */
     public tranferSuccessful: boolean;
 
