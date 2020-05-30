@@ -60,8 +60,6 @@ export class MinerService {
         myBlock.index = job.index;
         myBlock.expectedReward = job.expectedReward;
         myBlock.rewardAddress = job.rewardAddress;
-        myBlock.transactions = job.transactions;
-        myBlock.timestamp = job.timestamp;
         myBlock.transactionsIncluded = job.transactionsIncluded;
         this.jobs.set(myBlock.blockDataHash, myBlock);
         let minedBlock = this.mineTheBlock(myBlock);
@@ -79,12 +77,10 @@ export class MinerService {
             console.log('MinerService.mineTheBloc(): nonce=', nonce);
             //CryptoJS.SHA256(index + previousHash + timestamp + data + difficulty + nonce).toString();
             //minedBlockHash = sha256(
+            minedBlock.dateCreated = new Date();
             minedBlockHash = CryptoJS.SHA256(
-                _candidateBlock.index +
-                _candidateBlock.previousBlockHash +
-                _candidateBlock.timestamp +
-                _candidateBlock.transactions +
-                _candidateBlock.difficulty +
+                _candidateBlock.blockDataHash +
+                minedBlock.dateCreated.toISOString() +
                 nonce).toString();
             console.log('MinerService.mineTheBloc(): minedBlockHash=', minedBlockHash);
             let _strStart: string = minedBlockHash.substr(0, _candidateBlock.difficulty);
@@ -97,15 +93,7 @@ export class MinerService {
         }
         minedBlock.nonce = nonce;
         minedBlock.blockHash = minedBlockHash;
-        minedBlock.dateCreated = new Date();
         minedBlock.blockDataHash = _candidateBlock.blockDataHash;
-        minedBlock.timestamp = _candidateBlock.timestamp;
-        // Go through the transactions and set the minedBlockIndex and the tranferSuccessful
-        for (let i = 0; i < _candidateBlock.transactions.length; i++) {
-            _candidateBlock.transactions[i].minedInBlockIndex = _candidateBlock.index;
-            _candidateBlock.transactions[i].tranferSuccessful = true;
-        }
-        minedBlock.transactions = _candidateBlock.transactions;
         console.log('MinerService.mineTheBlock(): minedBlock='+JSON.stringify(minedBlock));
         return minedBlock;
     }
