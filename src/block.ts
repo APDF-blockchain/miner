@@ -1,4 +1,4 @@
-import { Transaction } from './transaction';
+import { Transaction } from './model/transaction';
 import { HttpBinData } from './http-bin-data';
 
 /**

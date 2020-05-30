@@ -78,7 +78,8 @@ export class MinerService {
         while (done === false) {
             console.log('MinerService.mineTheBloc(): nonce=', nonce);
             blockCandidate.nonce = nonce;
-            minedBlockHash = sha256(JSON.stringify(blockCandidate));
+            //minedBlockHash = sha256(JSON.stringify(blockCandidate));
+            minedBlockHash = sha256(_block.index + _block.previousBlockHash + _block.timestamp + _block.transactions +_block.difficulty + nonce.toString());
             console.log('MinerService.mineTheBloc(): minedBlockHash=', minedBlockHash);
             let _strStart: string = minedBlockHash.substr(0, _block.difficulty);
             console.log('MinerService.mineTheBloc(): _strStart=', _strStart);
@@ -92,6 +93,8 @@ export class MinerService {
         minedBlock.blockHash = minedBlockHash;
         minedBlock.dateCreated = new Date();
         minedBlock.blockDataHash = blockCandidate.blockDataHash;
+        minedBlock.timestamp = _block.timestamp;
+        minedBlock.transactions = _block.transactions;
         return minedBlock;
     }
 
