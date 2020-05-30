@@ -1,6 +1,5 @@
 import { Config } from "./config";
 import { HttpService } from "./http-service";
-import { Block } from "./block";
 import { MinerService } from "./miner-service";
 
 /**

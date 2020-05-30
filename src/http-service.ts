@@ -1,7 +1,6 @@
 import * as rm from 'typed-rest-client/RestClient';
 import { HttpBinData } from './http-bin-data';
 import { MinerService } from './miner-service';
-import { Block } from './block';
 import { Config } from './config';
 import { SubmitBlock } from './model/submit-block';
 // export interface HttpBinData {

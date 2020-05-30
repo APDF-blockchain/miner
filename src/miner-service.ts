@@ -1,7 +1,6 @@
 // import { sha256, sha224 } from 'js-sha256';
 //import sha256 from 'crypto-js/sha256';
 import * as CryptoJS from 'crypto-js';
-import { Block } from "./block";
 import { BlockCandidate } from './model/candidate-block';
 import { SubmitBlock } from './model/submit-block';
 

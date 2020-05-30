@@ -1,5 +1,3 @@
-import { Transaction } from "./transaction";
-
 export class SubmitBlock {
     public blockDataHash: string;
     public dateCreated: Date;
