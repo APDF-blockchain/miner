@@ -1,6 +1,6 @@
 //import * as rm from 'typed-rest-client/RestClient';
 const axios = require('axios').default;
-import { HttpBinData } from './http-bin-data';
+//import { HttpBinData } from './http-bin-data';
 import { MinerService } from './miner-service';
 import { Config } from './config';
 import { SubmitBlock } from './model/submit-block';

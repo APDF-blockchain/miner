@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Config | miner</title>
+	<title>BlockCandidate | miner</title>
 	<meta name="description" content="Documentation for miner">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -56,13 +56,13 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="../modules/_config_.html">&quot;config&quot;</a>
+					<a href="../modules/_model_candidate_block_.html">&quot;model/candidate-block&quot;</a>
 				</li>
 				<li>
-					<a href="_config_.config.html">Config</a>
+					<a href="_model_candidate_block_.blockcandidate.html">BlockCandidate</a>
 				</li>
 			</ul>
-			<h1>Class Config</h1>
+			<h1>Class BlockCandidate</h1>
 		</div>
 	</div>
 </header>
@@ -74,7 +74,7 @@
 					<dl class="tsd-comment-tags">
 						<dt>classdesc</dt>
 						<dd><ul>
-								<li>This class contains the configuration for the Miner.</li>
+								<li>this is what is sent to the miner from the node from the GET request.</li>
 							</ul>
 						</dd>
 					</dl>
@@ -84,7 +84,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Config</span>
+						<span class="target">BlockCandidate</span>
 					</li>
 				</ul>
 			</section>
@@ -95,18 +95,18 @@
 						<section class="tsd-index-section ">
 							<h3>Constructors</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_config_.config.html#constructor" class="tsd-kind-icon">constructor</a></li>
+								<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="_model_candidate_block_.blockcandidate.html#constructor" class="tsd-kind-icon">constructor</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#microcoin" class="tsd-kind-icon">micro<wbr>Coin</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#millicoin" class="tsd-kind-icon">milli<wbr>Coin</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#minfee" class="tsd-kind-icon">min<wbr>Fee</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#mineraddress" class="tsd-kind-icon">miner<wbr>Address</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#nodeurl" class="tsd-kind-icon">node<wbr>Url</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_config_.config.html#onecoin" class="tsd-kind-icon">one<wbr>Coin</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_model_candidate_block_.blockcandidate.html#blockdatahash" class="tsd-kind-icon">block<wbr>Data<wbr>Hash</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_model_candidate_block_.blockcandidate.html#difficulty" class="tsd-kind-icon">difficulty</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_model_candidate_block_.blockcandidate.html#expectedreward" class="tsd-kind-icon">expected<wbr>Reward</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_model_candidate_block_.blockcandidate.html#index" class="tsd-kind-icon">index</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_model_candidate_block_.blockcandidate.html#rewardaddress" class="tsd-kind-icon">reward<wbr>Address</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-class"><a href="_model_candidate_block_.blockcandidate.html#transactionsincluded" class="tsd-kind-icon">transactions<wbr>Included</a></li>
 							</ul>
 						</section>
 					</div>
@@ -118,25 +118,18 @@
 					<a name="constructor" class="tsd-anchor"></a>
 					<h3>constructor</h3>
 					<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-						<li class="tsd-signature tsd-kind-icon">new <wbr>Config<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_config_.config.html" class="tsd-signature-type">Config</a></li>
+						<li class="tsd-signature tsd-kind-icon">new <wbr>Block<wbr>Candidate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="_model_candidate_block_.blockcandidate.html" class="tsd-signature-type">BlockCandidate</a></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/config.ts#L43">config.ts:43</a></li>
+									<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/model/candidate-block.ts#L29">model/candidate-block.ts:29</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
-								<dl class="tsd-comment-tags">
-									<dt>description</dt>
-									<dd><ul>
-											<li>Class constructor initializes the configuration attributes for the entire miner.</li>
-										</ul>
-									</dd>
-								</dl>
 							</div>
-							<h4 class="tsd-returns-title">Returns <a href="_config_.config.html" class="tsd-signature-type">Config</a></h4>
+							<h4 class="tsd-returns-title">Returns <a href="_model_candidate_block_.blockcandidate.html" class="tsd-signature-type">BlockCandidate</a></h4>
 						</li>
 					</ul>
 				</section>
@@ -144,114 +137,114 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="microcoin" class="tsd-anchor"></a>
-					<h3>micro<wbr>Coin</h3>
-					<div class="tsd-signature tsd-kind-icon">micro<wbr>Coin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="blockdatahash" class="tsd-anchor"></a>
+					<h3>block<wbr>Data<wbr>Hash</h3>
+					<div class="tsd-signature tsd-kind-icon">block<wbr>Data<wbr>Hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/config.ts#L28">config.ts:28</a></li>
+							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/model/candidate-block.ts#L29">model/candidate-block.ts:29</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
 							<dd><ul>
-									<li>1 micro-coin</li>
+									<li>the blockDataHash that was calculated by the node after validating the transactions, which is the actual data.</li>
 								</ul>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="millicoin" class="tsd-anchor"></a>
-					<h3>milli<wbr>Coin</h3>
-					<div class="tsd-signature tsd-kind-icon">milli<wbr>Coin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="difficulty" class="tsd-anchor"></a>
+					<h3>difficulty</h3>
+					<div class="tsd-signature tsd-kind-icon">difficulty<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/config.ts#L24">config.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/model/candidate-block.ts#L17">model/candidate-block.ts:17</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
 							<dd><ul>
-									<li>1 milli-coin = 1000 micro-coins</li>
+									<li>the difficulty level for this block as required by the node.</li>
 								</ul>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="minfee" class="tsd-anchor"></a>
-					<h3>min<wbr>Fee</h3>
-					<div class="tsd-signature tsd-kind-icon">min<wbr>Fee<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="expectedreward" class="tsd-anchor"></a>
+					<h3>expected<wbr>Reward</h3>
+					<div class="tsd-signature tsd-kind-icon">expected<wbr>Reward<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/config.ts#L33">config.ts:33</a></li>
+							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/model/candidate-block.ts#L21">model/candidate-block.ts:21</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
 							<dd><ul>
-									<li>minimum fee = 10 micro-coin</li>
+									<li>the expected reward for a success mine as specified by the node.</li>
 								</ul>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="mineraddress" class="tsd-anchor"></a>
-					<h3>miner<wbr>Address</h3>
-					<div class="tsd-signature tsd-kind-icon">miner<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="index" class="tsd-anchor"></a>
+					<h3>index</h3>
+					<div class="tsd-signature tsd-kind-icon">index<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/config.ts#L43">config.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/model/candidate-block.ts#L9">model/candidate-block.ts:9</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
 							<dd><ul>
-									<li>miner address that we set, possibly the metamask account address. Currently 28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B</li>
+									<li>index number of this block specified from the node.</li>
 								</ul>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="nodeurl" class="tsd-anchor"></a>
-					<h3>node<wbr>Url</h3>
-					<div class="tsd-signature tsd-kind-icon">node<wbr>Url<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<a name="rewardaddress" class="tsd-anchor"></a>
+					<h3>reward<wbr>Address</h3>
+					<div class="tsd-signature tsd-kind-icon">reward<wbr>Address<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/config.ts#L38">config.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/model/candidate-block.ts#L25">model/candidate-block.ts:25</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
 							<dd><ul>
-									<li>default node url <a href="http://localhost:3001">http://localhost:3001</a></li>
+									<li>the address of this miner.</li>
 								</ul>
 							</dd>
 						</dl>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class">
-					<a name="onecoin" class="tsd-anchor"></a>
-					<h3>one<wbr>Coin</h3>
-					<div class="tsd-signature tsd-kind-icon">one<wbr>Coin<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+					<a name="transactionsincluded" class="tsd-anchor"></a>
+					<h3>transactions<wbr>Included</h3>
+					<div class="tsd-signature tsd-kind-icon">transactions<wbr>Included<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/config.ts#L20">config.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/APDF-blockchain/miner/blob/9f25aab/src/model/candidate-block.ts#L13">model/candidate-block.ts:13</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<dl class="tsd-comment-tags">
 							<dt>description</dt>
 							<dd><ul>
-									<li>1 coin = 1000 milli-coins = 1,000,000 micro-coins</li>
+									<li>the number of transactions that included by the node.</li>
 								</ul>
 							</dd>
 						</dl>
@@ -265,7 +258,7 @@
 					<li class="globals  ">
 						<a href="../globals.html"><em>Globals</em></a>
 					</li>
-					<li class="current tsd-kind-module">
+					<li class=" tsd-kind-module">
 						<a href="../modules/_config_.html">&quot;config&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -277,7 +270,7 @@
 					<li class=" tsd-kind-module">
 						<a href="../modules/_miner_service_.html">&quot;miner-<wbr>service&quot;</a>
 					</li>
-					<li class=" tsd-kind-module">
+					<li class="current tsd-kind-module">
 						<a href="../modules/_model_candidate_block_.html">&quot;model/candidate-<wbr>block&quot;</a>
 					</li>
 					<li class=" tsd-kind-module">
@@ -290,28 +283,28 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-class tsd-parent-kind-module">
-						<a href="_config_.config.html" class="tsd-kind-icon">Config</a>
+						<a href="_model_candidate_block_.blockcandidate.html" class="tsd-kind-icon">Block<wbr>Candidate</a>
 						<ul>
 							<li class=" tsd-kind-constructor tsd-parent-kind-class">
-								<a href="_config_.config.html#constructor" class="tsd-kind-icon">constructor</a>
+								<a href="_model_candidate_block_.blockcandidate.html#constructor" class="tsd-kind-icon">constructor</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_config_.config.html#microcoin" class="tsd-kind-icon">micro<wbr>Coin</a>
+								<a href="_model_candidate_block_.blockcandidate.html#blockdatahash" class="tsd-kind-icon">block<wbr>Data<wbr>Hash</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_config_.config.html#millicoin" class="tsd-kind-icon">milli<wbr>Coin</a>
+								<a href="_model_candidate_block_.blockcandidate.html#difficulty" class="tsd-kind-icon">difficulty</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_config_.config.html#minfee" class="tsd-kind-icon">min<wbr>Fee</a>
+								<a href="_model_candidate_block_.blockcandidate.html#expectedreward" class="tsd-kind-icon">expected<wbr>Reward</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_config_.config.html#mineraddress" class="tsd-kind-icon">miner<wbr>Address</a>
+								<a href="_model_candidate_block_.blockcandidate.html#index" class="tsd-kind-icon">index</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_config_.config.html#nodeurl" class="tsd-kind-icon">node<wbr>Url</a>
+								<a href="_model_candidate_block_.blockcandidate.html#rewardaddress" class="tsd-kind-icon">reward<wbr>Address</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-class">
-								<a href="_config_.config.html#onecoin" class="tsd-kind-icon">one<wbr>Coin</a>
+								<a href="_model_candidate_block_.blockcandidate.html#transactionsincluded" class="tsd-kind-icon">transactions<wbr>Included</a>
 							</li>
 						</ul>
 					</li>
