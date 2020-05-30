@@ -1,4 +1,5 @@
-import * as rm from 'typed-rest-client/RestClient';
+//import * as rm from 'typed-rest-client/RestClient';
+const axios = require('axios').default;
 import { HttpBinData } from './http-bin-data';
 import { MinerService } from './miner-service';
 import { Config } from './config';
@@ -20,7 +21,7 @@ export class HttpService {
      */
     private nodeUrl: string;
 
-    private rest: rm.RestClient;
+    //private rest: rm.RestClient;
 
     /**
      * @constructor - initializes an object of this class
@@ -29,7 +30,7 @@ export class HttpService {
      */
     constructor(private minerService: MinerService, private config: Config) {
         this.nodeUrl = config.nodeUrl;
-        this.rest = new rm.RestClient('miner-http-service');
+        //this.rest = new rm.RestClient('miner-http-service');
     }
 
     /**
@@ -40,14 +41,16 @@ export class HttpService {
             let queryParameter = this.config.minerAddress;  // This is the address of miner.  The individual who has a mining rig.  How is it calculated?
             console.log('HttpService.requestBlockFromNode(): GET ' + this.nodeUrl + '/mining/get-mining-job/{' + queryParameter + '}');
 
-            let res: rm.IRestResponse<HttpBinData> = await this.rest.get<HttpBinData>(this.nodeUrl + '/mining/get-mining-job/' + queryParameter);
-            console.log('HttpService.requestBlockFromNode(): status code=', res.statusCode);
-            console.log('HttpService.requestBlockFromNode(): result=', res.result);
-            let minedBlock: SubmitBlock = this.minerService.processMiningJob(res.result);
+            //let res: rm.IRestResponse<HttpBinData> = await this.rest.get<HttpBinData>(this.nodeUrl + '/mining/get-mining-job/' + queryParameter);
+            let res = await axios.get(this.nodeUrl + '/mining/get-mining-job/'+queryParameter );
+            console.log('HttpService.requestBlockFromNode(): status code=', res.status);
+            console.log('HttpService.requestBlockFromNode(): data=', res.data);
+            let minedBlock: SubmitBlock = this.minerService.processMiningJob(res.data);
             this.submitMinedBlockToBlockChainNode(minedBlock);
         } catch (err) {
             console.log(err.message);
-            console.log(err.result);
+            console.log(err.response.data);
+            //console.log(err.result);
         }
     }
 
@@ -59,35 +62,37 @@ export class HttpService {
             submitBlock.dateCreated = _minedBlock.dateCreated;
             submitBlock.nonce = _minedBlock.nonce;
             submitBlock.blockHash = _minedBlock.blockHash;
-            let res: rm.IRestResponse<HttpBinData> = await this.rest.create<HttpBinData>(this.nodeUrl + '/mining/submit-mined-block', submitBlock);
-            console.log('HttpService.submitMinedBlockToBlockChainNode(): status code=', res.statusCode);
-            console.log('HttpService.submitMinedBlockToBlockChainNode(): result=', res.result);
+            //let res: rm.IRestResponse<HttpBinData> = await this.rest.create<HttpBinData>(this.nodeUrl + '/mining/submit-mined-block', submitBlock);
+            let res = await axios.post(this.nodeUrl + '/mining/submit-mined-block', submitBlock);
+            console.log('HttpService.submitMinedBlockToBlockChainNode(): status code=', res.status);
+            console.log('HttpService.submitMinedBlockToBlockChainNode(): data=', res.data);
             this.minerService.getJobsMap().delete(submitBlock.blockDataHash);
         } catch (err) {
             console.log(err.message);
-            console.log(err.result);
+            console.log(err.response.data);
+            //console.log(err.result);
         }
     }
 
-    /**
-     * @description - for testing purposes only.  may be removed later.
-     * @param {string} address - address of miner
-     */
-    public async requestPreviousBlockFromNode(address: string): Promise<any> {
-        try {
-            //let url = 'http://localhost:3001';
-            let queryParameter = address;
-            console.log('GET ' + this.nodeUrl + '/mining/get-mining-job/{' + queryParameter + '}');
+    // /**
+    //  * @description - for testing purposes only.  may be removed later.
+    //  * @param {string} address - address of miner
+    //  */
+    // public async requestPreviousBlockFromNode(address: string): Promise<any> {
+    //     try {
+    //         //let url = 'http://localhost:3001';
+    //         let queryParameter = address;
+    //         console.log('GET ' + this.nodeUrl + '/mining/get-mining-job/{' + queryParameter + '}');
 
-            let rVal: HttpBinData;
-            let rest: rm.RestClient = new rm.RestClient('miner-http-service');
-            let res: rm.IRestResponse<HttpBinData> = await rest.get<HttpBinData>(this.nodeUrl + '/mining/get-mining-job/' + queryParameter);
-            console.log('status code=', res.statusCode);
-            console.log('result=', res.result);
-            this.minerService.processMiningJob(res.result);
-            rVal = res.result;
-        } catch (err) {
-            console.log(err.message);
-        }
-    }
+    //         let rVal: HttpBinData;
+    //         let rest: rm.RestClient = new rm.RestClient('miner-http-service');
+    //         let res: rm.IRestResponse<HttpBinData> = await rest.get<HttpBinData>(this.nodeUrl + '/mining/get-mining-job/' + queryParameter);
+    //         console.log('status code=', res.statusCode);
+    //         console.log('result=', res.result);
+    //         this.minerService.processMiningJob(res.result);
+    //         rVal = res.result;
+    //     } catch (err) {
+    //         console.log(err.message);
+    //     }
+    // }
 }

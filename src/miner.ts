@@ -50,17 +50,17 @@ export class Miner {
         console.log('Miner.processMiningJob(): res=',res);
     }
 
-    /**
-     * @description - for testing purposed only.  may be removed later.
-     */
-    public processApreviousJob(): void {
-        let addresses: string[] = [];
-        for( let myAddress of this.minerService.getJobsMap().keys()) {
-            console.log('myAddress=',myAddress);
-            addresses.push(myAddress);
-        }
-        this.httpService.requestPreviousBlockFromNode(addresses[addresses.length - 1]);
-    }
+    // /**
+    //  * @description - for testing purposed only.  may be removed later.
+    //  */
+    // public processApreviousJob(): void {
+    //     let addresses: string[] = [];
+    //     for( let myAddress of this.minerService.getJobsMap().keys()) {
+    //         console.log('myAddress=',myAddress);
+    //         addresses.push(myAddress);
+    //     }
+    //     this.httpService.requestPreviousBlockFromNode(addresses[addresses.length - 1]);
+    // }
 }
 
 /**
