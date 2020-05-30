@@ -95,7 +95,7 @@ export class MinerService {
                 nonce++;
             }
         }
-        minedBlock.nonce = blockCandidate.nonce;
+        minedBlock.nonce = nonce;
         minedBlock.blockHash = minedBlockHash;
         minedBlock.dateCreated = new Date();
         minedBlock.blockDataHash = blockCandidate.blockDataHash;
