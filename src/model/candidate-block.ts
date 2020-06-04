@@ -4,14 +4,6 @@
  */
 export class BlockCandidate {
     /**
-     * @description - index number of this block specified from the node.
-     */
-    public index: number;
-    /**
-     * @description - the number of transactions that included by the node.
-     */
-    public transactionsIncluded: number;
-    /**
      * @description - the difficulty level for this block as required by the node.
      */
     public difficulty: number;

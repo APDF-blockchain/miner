@@ -56,10 +56,8 @@ export class MinerService {
         let myBlock: BlockCandidate = new BlockCandidate();
         myBlock.blockDataHash = job.blockDataHash;
         myBlock.difficulty = job.difficulty;
-        myBlock.index = job.index;
         myBlock.expectedReward = job.expectedReward;
         myBlock.rewardAddress = job.rewardAddress;
-        myBlock.transactionsIncluded = job.transactionsIncluded;
         this.jobs.set(myBlock.blockDataHash, myBlock);
         let minedBlock = this.mineTheBlock(myBlock);
         return minedBlock;
@@ -74,9 +72,8 @@ export class MinerService {
         let nonce: number = 0
         while (done === false) {
             console.log('MinerService.mineTheBloc(): nonce=', nonce);
-            //CryptoJS.SHA256(index + previousHash + timestamp + data + difficulty + nonce).toString();
-            //minedBlockHash = sha256(
             minedBlock.dateCreated = new Date();
+            //minedBlockHash = sha256(
             minedBlockHash = CryptoJS.SHA256(
                 _candidateBlock.blockDataHash +
                 minedBlock.dateCreated.toISOString() +

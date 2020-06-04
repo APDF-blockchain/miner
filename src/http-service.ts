@@ -49,7 +49,9 @@ export class HttpService {
             this.submitMinedBlockToBlockChainNode(minedBlock);
         } catch (err) {
             console.log(err.message);
-            console.log(err.response.data);
+            if(err.response !== undefined && err.response.data !== undefined) {
+                console.log(err.response.data);
+            }
             //console.log(err.result);
         }
     }
@@ -69,7 +71,9 @@ export class HttpService {
             this.minerService.getJobsMap().delete(submitBlock.blockDataHash);
         } catch (err) {
             console.log(err.message);
-            console.log(err.response.data);
+            if(err.response !== undefined && err.response.data !== undefined) {
+                console.log(err.response.data);
+            }
             //console.log(err.result);
         }
     }
