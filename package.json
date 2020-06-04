@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "npm run build && node dist/miner.js"
+    "start": "npm run build && node dist/miner.js --url=http://localhost:3001 --address=28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B"
   },
   "repository": {
     "type": "git",

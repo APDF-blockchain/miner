@@ -30,6 +30,7 @@ export class Miner {
         let url: string = args.url;
         let address: string = args.address;
         console.log('url=',url);
+        console.log('address=',address);
         if( url != null && url !== undefined ) {
             this.config.nodeUrl = url;
         }
