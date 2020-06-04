@@ -94,39 +94,6 @@ export class MinerService {
         return minedBlock;
     }
 
-    // private mineTheBlockWrongIthink(_block: Block): Block {
-    //     let minedBlock: Block;
-    //     // Deal with the transactions. Such as set the block index and the trans success = true.
-    //     for (let i = 0; i < _block.transactions.length; i++) {
-    //         _block.transactions[i].tranferSuccessful = true;
-    //         _block.transactions[i].minedInBlockIndex = _block.index;
-    //     }
-    //     let done: boolean = false;
-    //     //let maxZeroString: string = '00000000000000000000000000000000000000000000000000'; // 50 zeros
-    //     // This allows for changes in difficulty and the number of zero to compare at the beginning of the calculated hash.
-    //     let maxZeroString: string = "0".repeat(_block.difficulty + 1); 
-    //     let minedBlockHash: string = '';
-    //     let nonce: number = _block.nonce;
-    //     while (done === false) {
-    //         console.log('nonce=', nonce);
-    //         _block.nonce = nonce;
-    //         minedBlockHash = sha256(JSON.stringify(_block));
-    //         console.log('minedBlockHash=', minedBlockHash);
-    //         let _strStart: string = minedBlockHash.substr(0, _block.difficulty);
-    //         console.log('_strStart=', _strStart);
-    //         if (_strStart === maxZeroString.substr(0, _block.difficulty)) {
-    //             done = true;
-    //         } else {
-    //             nonce++;
-    //         }
-    //     }
-    //     _block.nonce = nonce;
-    //     _block.blockHash = minedBlockHash;
-    //     _block.dateCreated = new Date();
-    //     minedBlock = _block;
-    //     return minedBlock;
-    // }
-
     /**
      * @description - get the jobs map
      * @returns - map of the jobs
