@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
-    "start": "npm run build && node dist/miner.js"
+    "start": "npm run build && node dist/miner.js --url=http://localhost:3001 --address=28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "js-sha256": "^0.9.0",
     "lodash": "^4.17.15",
     "ts-node": "^8.10.1",
+    "typed-rest-client": "^1.0.3",
+    "typedoc": "^0.17.7",
     "typescript": "^3.9.3",
     "ws": "^7.3.0"
   }

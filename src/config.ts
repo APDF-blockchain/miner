@@ -1,100 +1,56 @@
-import { Block } from "./block";
-
 /**
- * @classdesc - This class contains the configuration for the Node.
+ * @classdesc - This class contains the configuration for the Miner.
  * @class Config
  */
 export class Config {
-    /**
-     * @description - default http server host
+        /**
+     * Coins and Rewards
+        o Coins are 64 bit integers (no real numbers!)
+            o 1 coin = 1 000 milli coins = 1 000 000 micro coins
+        o All transfers, fees, block awards are defined in micro coins
+        o The block reward (per mined block) is static
+            o 5,000,000 micro coins
+        o The minimum transaction fee (to avoid spam) is
+            o 10 micro coins
      */
-    public defaultServerHost: string;
-    /**
-     * @description - default peer-to-pear listener host.
-     */
-    public defaultP2pHost: string;
-    /**
-     * @description - default http server port
-     */
-    public defaultServerPort: number;
-    /**
-     * @description - default peer-to-peer listener port
-     */
-    public defaultP2pPort: number;
-    /**
-     * @description - faucet private key.
-     */
-    public faucetPrivateKey: string;
-    /**
-     * @description - faucet public key
-     */
-    public faucetPublicKey: string;
-    /**
-     * @description - faucet address
-     */
-    public faucetAddress: string;
-    /**
-     * @description - null address
-     */
-    public nullAddress: string;
-    /**
-     * @description - null public key
-     */
-    public nullPubKey: string;
-    /**
-     * @description - null signature array
-     */
-    public nullSignature: string[] = [];
-    /**
-     * @description - the starting difficult level for mining a block
-     */
-    public startDifficulty: number;
-    /**
-     * @description - minimum transaction fee
-     */
-    public minTransactionFee: number;
-    /**
-     * @description - maximum transaction fee
-     */
-    public maxTransactionFee: number;
-    /**
-     * @description - block mining award
-     */
-    public blockReward: number;
-    /**
-     * @description - maximum transfer fee
-     */
-    public maxTransferValue: number;
-    /**
-     * @description - safe confirm count
-     */
-    public safeConfirmCount: number;
-    /**
-     * @description - the genesis block for the blockchain
-     */
-    public genesisBlock: Block;
 
     /**
-     * @description - Class constructor initializes the configuration attributes for the entire Node/blockchain.
+     * @description - 1 coin = 1000 milli-coins = 1,000,000 micro-coins
+     */
+    public oneCoin: number;
+    /**
+     * @description - 1 milli-coin = 1000 micro-coins
+     */
+    public milliCoin: number;
+    /**
+     * @description - 1 micro-coin
+     */
+    public microCoin: number;
+
+    /**
+     * @description - minimum fee = 10 micro-coin
+     */
+    public minFee: number;
+
+    /**
+     * @description - default node url http://localhost:3001
+     */
+    public nodeUrl: string;
+
+    /**
+     * @description - miner address that we set, possibly the metamask account address. Currently 28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B
+     */
+    public minerAddress: string;
+    /**
+     * @description - Class constructor initializes the configuration attributes for the entire miner.
      * @constructor
      */
     constructor() {
-        this.defaultServerHost = 'localhost';
-        this.defaultP2pHost = 'localhost';
-        this.defaultServerPort = 5001;
-        this.defaultP2pPort = 7001;
-        this.faucetPrivateKey = "838ff8634c41ba62467cc874ca156830ba55efe3e41ceeeeae5f3e77238f4eef";
-        this.faucetPublicKey = '8c4431db61e9095d5794ff53a3ae4171c766cadef015f2e11bec22b98a80f74a0';
-        this.faucetAddress = 'f3a1e69b6176052fcc4a3248f1c5a91dea308ca9';
-        this.nullAddress = '0000000000000000000000000000000000000000';
-        this.nullPubKey = '00000000000000000000000000000000000000000000000000000000000000000';
-        this.nullSignature.push('0000000000000000000000000000000000000000000000000000000000000000');
-        this.nullSignature.push('0000000000000000000000000000000000000000000000000000000000000000');
-        this.startDifficulty = 4;
-        this.minTransactionFee = 10;
-        this.maxTransactionFee = 1000000;
-        this.blockReward = 5000000;
-        this.maxTransferValue = 10000000000000;
-        this.safeConfirmCount = 3;
+        this.nodeUrl = 'http://localhost:3001';
+        this.minerAddress = '28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B';
+        this.microCoin = 1;
+        this.milliCoin = 1000 * this.microCoin;
+        this.oneCoin = 1000 * this.milliCoin;
+        this.minFee = 10 * this.microCoin;
     }
 }

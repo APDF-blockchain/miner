@@ -1,43 +1,72 @@
-import { P2P } from "./p2p";
-import { HttpServer } from "./httpserver";
 import { Config } from "./config";
+import { HttpService } from "./http-service";
+import { MinerService } from "./miner-service";
 
+/**
+ * @classdesc - the main class for this application
+ * @class Miner
+ */
 export class Miner {
-    /**
-     * @description - the peer-to-peer server
-     */
-    public p2p: P2P;
-    /**
-     * @description - the http server that responds to http requests
-     */
-    public httpServer: HttpServer;
-    /**
-     * @description - configuration object
-     */
-    public config: Config = new Config();
-    /**
-     * @description - http port for the http server
-     */
-    public httpPort: number = parseInt(process.env.HTTP_PORT) || this.config.defaultServerPort;
-    /**
-     * @description - p2p port number for the p2p server
-     */
-    public p2pPort: number = parseInt(process.env.P2P_PORT) || this.config.defaultP2pPort;
-    /**
-     * @description - comma separated list of peer urls.
-     */
-    public initialPeers: string[] = process.env.PEERS ? process.env.PEERS.split(',') : [];
 
+    /**
+     * @description - the http service object
+     */
+    private httpService: HttpService;
+    /**
+     * @description - the miner service object
+     */
+    private minerService: MinerService;
+    /**
+     * @description - the configuration object
+     */
+    private config: Config;
+
+    /**
+     * @constructor - initialized this class object
+     * @param args - arguments from the command line
+     */
     constructor(args: any) {
-        console.log(this.initialPeers);
-        this.p2p = new P2P();
-        this.httpServer = new HttpServer(this.p2p);
-        this.httpServer.initHttpServer(this.httpPort);
-        this.p2p.initP2PServer(this.p2pPort);
-        this.p2p.connectToPeers(this.initialPeers);
+        this.config = new Config();
+        let url: string = args.url;
+        let address: string = args.address;
+        console.log('url=',url);
+        console.log('address=',address);
+        if( url != null && url !== undefined ) {
+            this.config.nodeUrl = url;
+        }
+        if( address != null && address !== undefined) {
+            this.config.minerAddress = address;
+        }
+
+        console.log("New miner");
+        this.minerService = new MinerService();
+        this.httpService = new HttpService(this.minerService,this.config);
     }
+
+    /**
+     * @description - process a mining job that is requested from the blockchain node.
+     */
+    public processMiningJob(): void {
+        let res = this.httpService.requestBlockFromNode();
+        console.log('Miner.processMiningJob(): res=',res);
+    }
+
+    // /**
+    //  * @description - for testing purposed only.  may be removed later.
+    //  */
+    // public processApreviousJob(): void {
+    //     let addresses: string[] = [];
+    //     for( let myAddress of this.minerService.getJobsMap().keys()) {
+    //         console.log('myAddress=',myAddress);
+    //         addresses.push(myAddress);
+    //     }
+    //     this.httpService.requestPreviousBlockFromNode(addresses[addresses.length - 1]);
+    // }
 }
 
+/**
+ * @description - get command line args. --url=<url of node> --address=<address of the miner>
+ */
 function getArgs() {
     const args = {};
     process.argv
@@ -60,7 +89,39 @@ function getArgs() {
         });
     return args;
 }
+
+/**
+ * @description - call the getArgs() function to process the command line args.
+ */
 const args = getArgs();
-console.log(args);
+//console.log(args);
 //--url=http://localhost:6001 for example
-let run = new Miner(args);
+//--address="28Fcf7997E56f1Fadd4FA39fD834e5B96cb13b2B"
+
+/**
+ * @description - sleep for given number of ms.
+ * @param {number} ms 
+ */
+function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
+/**
+ * @description - run the program forever and process a request every 5 seconds.
+ */
+async function run() {
+    let miner = new Miner(args);
+    console.log('Three second sleep, showing sleep in a loop...');
+    let count: number = 0;
+    //while(count++ < 1) { // Eventually this will be a forever while loop.
+    while(true) {
+        console.log("Do prcessing here.")
+        miner.processMiningJob();
+        await sleep(5000);
+    }
+}
+
+/**
+ * @description - run the application forever.
+ */
+run();
