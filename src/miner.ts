@@ -40,7 +40,7 @@ export class Miner {
 
         console.log("New miner");
         this.minerService = new MinerService();
-        this.httpService = new HttpService(this.minerService,this.config);
+        this.httpService = new HttpService(this.minerService, this.config);
     }
 
     /**

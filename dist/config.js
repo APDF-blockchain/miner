@@ -11,7 +11,8 @@ class Config {
      * @constructor
      */
     constructor() {
-        this.nodeUrl = 'https://awesome-blockchain-node.herokuapp.com';
+        // this.nodeUrl = 'https://awesome-blockchain-node.herokuapp.com';
+        this.nodeUrl = 'http://localhost:3001';
         this.minerAddress = '5bc2ec2a690700159eea1087c0f41e032b687605c075ec7f192edee84051a7b6';
         this.microCoin = 1;
         this.milliCoin = 1000 * this.microCoin;
