@@ -1,1 +1,1 @@
-worker: node dist/miner.js --url=http://awesome-blockchain-node.herokuapp.com --address=5bc2ec2a690700159eea1087c0f41e032b687605c075ec7f192edee84051a7b6
+worker: NODE_ENV=production node dist/miner.js
